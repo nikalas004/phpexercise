@@ -7,4 +7,7 @@ class RouteController
         require 'templates/home.html';
     }
 
+    public function users($params) {
+        require 'templates/users.phtml';
+    }
 }
