@@ -4,26 +4,48 @@
     <meta charset="UTF-8">
     <title>Users</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/users.css">
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col-2 border border-dark border-right-0">
+            <div class="col-2 border border-plus border-dark border-right-0">
                 Name
             </div>
-            <div class="col-2 border border-dark border-right-0">
+            <div class="col-2 border border-plus border-dark border-right-0">
                 E-mail
             </div>
-            <div class="col-2 border border-dark border-right-0">
+            <div class="col-2 border border-plus border-dark border-right-0">
                 Phone number
             </div>
-            <div class="col-2 border border-dark border-right-0">
+            <div class="col-2 border border-plus border-dark border-right-0">
                 City
             </div>
-            <div class="col-2 border border-dark">
+            <div class="col-2 border border-plus border-dark">
                 Address
             </div>
         </div>
+        <?php
+            foreach($users as $user) {
+                echo '<div class="row justify-content-md-center">
+                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                     $user->getName() .
+                    '</div>
+                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    $user->getEmail() .
+                    '</div>
+                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    $user->getNumber() .
+                    '</div>
+                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    $user->getCity() .
+                    '</div>
+                    <div class="col-2 border border-dark border-top-0">' .
+                    $user->getAddress() .
+                    '</div>
+                    </div>';
+            }
+        ?>
     </div>
 </body>
 </html>

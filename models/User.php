@@ -79,5 +79,14 @@ class User
         $this->address = $address;
     }
 
+    public static function getAllUsers() {
+        $userDataArray = UserRepository::getInstance()->getUsers();
 
+        $users = [];
+        foreach($userDataArray as $userData) {
+            array_push($users, new User($userData['name'], $userData['email'], $userData['number'], $userData['city'], $userData['address'], $userData['id']));
+        }
+
+        return $users;
+    }
 }

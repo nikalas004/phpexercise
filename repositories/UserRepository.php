@@ -19,4 +19,12 @@ class UserRepository
         return self::$instance;
     }
 
+    public function getUsers() {
+        $sth = 'SELECT * FROM users;';
+
+        $pdoSth = $this->con->prepare($sth);
+        $pdoSth->execute();
+        return $pdoSth->fetchAll();
+    }
+
 }

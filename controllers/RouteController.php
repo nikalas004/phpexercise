@@ -8,6 +8,7 @@ class RouteController
     }
 
     public function users($params) {
+        $users = User::getAllUsers();
         require 'templates/users.phtml';
     }
 }
