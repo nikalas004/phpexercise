@@ -11,4 +11,13 @@ class UserController
         ]);
     }
 
+    public function updateUser($params) {
+        $user = User::getUser($params['id']);
+        $user->update($params);
+
+        echo json_encode([
+            'code' => 200
+        ]);
+    }
+
 }

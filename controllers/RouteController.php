@@ -25,4 +25,14 @@ class RouteController
         }
         require 'templates/user.phtml';
     }
+
+    public function userUpdate($params) {
+        try {
+            $user = User::getUser($params['urlId']);
+        } catch(Exception $e) {
+            http_response_code(404);
+            return;
+        }
+        require 'templates/updateUser.phtml';
+    }
 }

@@ -1,6 +1,5 @@
-
 $(document).ready( function() {
-   $(".submit").click( function () {
+   $(".submit").click( function() {
        var nameInput = $(".name").val();
        var emailInput = $(".email").val();
        var numberInput = $(".number").val();

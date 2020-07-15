@@ -104,4 +104,14 @@ class User
         UserRepository::getInstance()->addUser($this);
     }
 
+    public function update($newData) {
+        $this->setName($newData['name']);
+        $this->setEmail($newData['email']);
+        $this->setNumber($newData['number']);
+        $this->setCity($newData['city']);
+        $this->setAddress($newData['address']);
+
+        UserRepository::getInstance()->updateUser($this);
+    }
+
 }
