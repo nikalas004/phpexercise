@@ -19,6 +19,11 @@
     $link_array = explode('/', $link[0]);
     array_shift($link_array);
     array_shift($link_array);
+    $id = null;
+    if(is_numeric(end($link_array))) {
+        $id = end($link_array);
+        unset($link_array[array_key_last($link_array)]);
+    }
     foreach($link_array as $key => $element) {
         if($key != 0) {
             $link_array[$key] = ucfirst($element);
@@ -36,7 +41,7 @@
         if(!method_exists($controller, $page)) {
             http_response_code(404);
         } else {
-            $controller->$page($_GET);
+            $controller->$page(array_merge($_GET, ['urlId' => $id]));
         }
     } else {
         $controllerName = $_REQUEST['target'] . 'Controller';

@@ -35,4 +35,12 @@ class UserRepository
         $pdoSth = $this->con->prepare($sth);
         $pdoSth->execute($params);
     }
+
+    public function getUserById($id) {
+        $sth = 'SELECT * FROM users WHERE id=:id';
+
+        $pdoSth = $this->con->prepare($sth);
+        $pdoSth->execute(['id' => $id]);
+        return $pdoSth->fetch();
+    }
 }

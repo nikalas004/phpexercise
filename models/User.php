@@ -30,6 +30,16 @@ class User
         return $users;
     }
 
+    public static function getUser($id) {
+        $userData = UserRepository::getInstance()->getUserById($id);
+
+        if(!$userData) {
+            throw new Exception();
+        }
+
+        return new User($userData['name'], $userData['email'], $userData['number'], $userData['city'], $userData['address'], $userData['id']);
+    }
+
     public function getId()
     {
         return $this->id;
