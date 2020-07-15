@@ -20,4 +20,11 @@ class UserController
         ]);
     }
 
+    public function deleteUser($params) {
+        User::deleteUser($params['id']);
+
+        echo json_encode([
+            'code' => 200
+        ]);
+    }
 }

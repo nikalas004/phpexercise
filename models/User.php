@@ -19,9 +19,12 @@ class User
         $this->address = $address;
     }
 
-    public static function getAllUsers() {
-        $userDataArray = UserRepository::getInstance()->getUsers();
-
+    public static function getAllUsers($col, $way) {
+        if(is_null($col)) {
+            $userDataArray = UserRepository::getInstance()->getUsers();
+        } else {
+            $userDataArray = UserRepository::getInstance()->getUsersOrdered($col, $way);
+        }
         $users = [];
         foreach($userDataArray as $userData) {
             array_push($users, new User($userData['name'], $userData['email'], $userData['number'], $userData['city'], $userData['address'], $userData['id']));
@@ -38,6 +41,10 @@ class User
         }
 
         return new User($userData['name'], $userData['email'], $userData['number'], $userData['city'], $userData['address'], $userData['id']);
+    }
+
+    public static function deleteUser($id) {
+        UserRepository::getInstance()->deleteUser($id);
     }
 
     public function getId()
@@ -113,5 +120,4 @@ class User
 
         UserRepository::getInstance()->updateUser($this);
     }
-
 }

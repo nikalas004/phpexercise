@@ -27,6 +27,14 @@ class UserRepository
         return $pdoSth->fetchAll();
     }
 
+    public function getUsersOrdered($col, $way) {
+        $sth = 'SELECT * FROM users ORDER BY ' . $col . ' ' . $way . ';';
+        //echo $sth;
+        $pdoSth = $this->con->prepare($sth);
+        $pdoSth->execute(['col' => $col]);
+        return $pdoSth->fetchAll();
+    }
+
     public function addUser($user) {
         $sth = 'INSERT INTO users(name, email, number, city, address) VALUES(:name, :email, :number, :city, :address);';
 
@@ -51,5 +59,12 @@ class UserRepository
             'city' => $user->getCity(), 'address' => $user->getAddress(), 'id' => $user->getId()];
         $pdoSth = $this->con->prepare($sth);
         $pdoSth->execute($params);
+    }
+
+    public function deleteUser($id) {
+        $sth = 'DELETE FROM users WHERE id = :id;';
+
+        $pdoSth = $this->con->prepare($sth);
+        $pdoSth->execute(['id' => $id]);
     }
 }

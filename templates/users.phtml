@@ -45,6 +45,18 @@
                     '</div>
                     </div>';
             }
+
+            echo '<div class="pagination row justify-content-center">Page:';
+            if(isset($params['col'])) {
+                $getParams = '&col=' . $params['col'] . '&' . 'way=' . $params['way'];
+            } else {
+                $getParams = '';
+            }
+            for($i = 0; $i < $pageCount; $i++) {
+                $page = $i+1;
+                echo '<a class="ml-2" href="users?page='. $page . $getParams . '">' . $page . '</a>';
+            }
+            echo '</div>';
         ?>
     </div>
 </body>
