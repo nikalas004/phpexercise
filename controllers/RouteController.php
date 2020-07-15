@@ -11,4 +11,8 @@ class RouteController
         $users = User::getAllUsers();
         require 'templates/users.phtml';
     }
+
+    public function userAdd($params) {
+        require 'templates/addUser.html';
+    }
 }

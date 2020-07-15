@@ -19,7 +19,12 @@
     $link_array = explode('/', $link[0]);
     array_shift($link_array);
     array_shift($link_array);
-    $page = end($link_array);
+    foreach($link_array as $key => $element) {
+        if($key != 0) {
+            $link_array[$key] = ucfirst($element);
+        }
+    }
+    $page = implode('', $link_array);
     if($page == '') {
         Header('Location: home');
     }
@@ -28,7 +33,11 @@
 
     if($page != 'request') {
         $controller = new RouteController();
-        $controller->$page($_GET);
+        if(!method_exists($controller, $page)) {
+            http_response_code(404);
+        } else {
+            $controller->$page($_GET);
+        }
     } else {
         $controllerName = $_REQUEST['target'] . 'Controller';
         $method = $_REQUEST['action'];

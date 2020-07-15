@@ -27,4 +27,12 @@ class UserRepository
         return $pdoSth->fetchAll();
     }
 
+    public function addUser($user) {
+        $sth = 'INSERT INTO users(name, email, number, city, address) VALUES(:name, :email, :number, :city, :address)';
+
+        $params = ['name' => $user->getName(), 'email' => $user->getEmail(), 'number' => $user->getNumber(),
+            'city' => $user->getCity(), 'address' => $user->getAddress()];
+        $pdoSth = $this->con->prepare($sth);
+        $pdoSth->execute($params);
+    }
 }
