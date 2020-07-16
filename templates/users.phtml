@@ -3,58 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/users.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/css/users.css">
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-2 border border-plus border-dark border-right-0">
+        <div class="row mt-3 bg-primary border-bottom border-dark border-plus">
+            <div id="name" class="col-2 user-col p-2 font-weight-bold text-white d-flex justify-content-center <?php if($params['way'] == 'DESC'  && $params['col'] == 'name') { echo 'dropup';} ?>">
                 Name
+                <?php
+                    if($params['col'] == 'name') {
+                        echo '<div class="dropdown-toggle ml-2"></div>';
+                    }
+                ?>
             </div>
-            <div class="col-2 border border-plus border-dark border-right-0">
+            <div id="email" class="col-2 user-col p-2 font-weight-bold text-white d-flex justify-content-center <?php if($params['way'] == 'DESC' && $params['col'] == 'email') { echo 'dropup';} ?>">
                 E-mail
+                <?php
+                if($params['col'] == 'email') {
+                    echo '<div class="dropdown-toggle ml-2"></div>';
+                }
+                ?>
             </div>
-            <div class="col-2 border border-plus border-dark border-right-0">
+            <div id="number" class="col-2 user-col p-2 font-weight-bold text-white d-flex justify-content-center <?php if($params['way'] == 'DESC'  && $params['col'] == 'number') { echo 'dropup';} ?>">
                 Phone number
+                <?php
+                if($params['col'] == 'number') {
+                    echo '<div class="dropdown-toggle ml-2"></div>';
+                }
+                ?>
             </div>
-            <div class="col-2 border border-plus border-dark border-right-0">
+            <div id="city" class="col-1 user-col p-2 font-weight-bold text-white d-flex justify-content-center <?php if($params['way'] == 'DESC'  && $params['col'] == 'city') { echo 'dropup';} ?>">
                 City
+                <?php
+                if($params['col'] == 'city') {
+                    echo '<div class="dropdown-toggle ml-2"></div>';
+                }
+                ?>
             </div>
-            <div class="col-2 border border-plus border-dark">
+            <div id="address" class="col-2 user-col p-2 font-weight-bold text-white d-flex justify-content-center <?php if($params['way'] == 'DESC'  && $params['col'] == 'address') { echo 'dropup';} ?>">
                 Address
+                <?php
+                if($params['col'] == 'address') {
+                    echo '<div class="dropdown-toggle ml-2"></div>';
+                }
+                ?>
+            </div>
+            <div class="col-3  p-1 d-flex justify-content-end d-flex justify-content-end">
+                <button class="add-user btn btn-success">Add user</button>
             </div>
         </div>
         <?php
             foreach($users as $user) {
-                echo '<div class="row justify-content-md-center">
-                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                echo '<div class="row border-bottom mt-3">
+                    <div class="col-2 p-2 d-flex justify-content-center">' .
                      $user->getName() .
                     '</div>
-                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    <div class="col-2 p-2 d-flex justify-content-center">' .
                     $user->getEmail() .
                     '</div>
-                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    <div class="col-2 p-2 d-flex justify-content-center">' .
                     $user->getNumber() .
                     '</div>
-                    <div class="col-2 border border-dark border-right-0 border-top-0">' .
+                    <div class="col-1 p-2 d-flex justify-content-center">' .
                     $user->getCity() .
                     '</div>
-                    <div class="col-2 border border-dark border-top-0">' .
+                    <div class="col-2 p-2 d-flex justify-content-center">' .
                     $user->getAddress() .
                     '</div>
+                    <div class="col-3 row d-flex justify-content-center p-1 user-id-'. $user->getId() .'">
+                        <button class="view col-3 btn btn-primary mr-1">View</button>
+                        <button class="edit col-3 btn btn-warning mr-1">Edit</button>
+                        <button class="delete col-4 btn btn-danger">Delete</button>
+                    </div>
                     </div>';
             }
 
-            echo '<div class="pagination row justify-content-center">Page:';
+            echo '<div class="pagination row justify-content-center">Pages:';
             if(isset($params['col'])) {
                 $getParams = '&col=' . $params['col'] . '&' . 'way=' . $params['way'];
             } else {
                 $getParams = '';
             }
+            $style = '';
             for($i = 0; $i < $pageCount; $i++) {
-                $page = $i+1;
-                echo '<a class="ml-2" href="users?page='. $page . $getParams . '">' . $page . '</a>';
+                $curPage = $i+1;
+                if($page == $curPage) {
+                    $style = ' font-weight-bold';
+                }
+                echo '<a class="ml-2' . $style . '" href="users?page='. $curPage . $getParams . '">' . $curPage . '</a>';
+                $style = '';
             }
             echo '</div>';
         ?>
