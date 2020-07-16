@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Update User</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../js/form.js"></script>
     <script src="../../js/updateUser.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
@@ -15,10 +16,12 @@
                 <label>Name:</label>
                 <input type="text" class="name form-control form-control-sm" placeholder="Enter Name" value="<?php echo $user->getName()?>">
             </div>
+            <div class="name-warning alert alert-danger"></div>
             <div class="form-group">
                 <label>E-mail:</label>
                 <input type="text" class="email form-control form-control-sm" placeholder="Enter E-mail" value="<?php echo $user->getEmail()?>">
             </div>
+            <div class="email-warning alert alert-danger"></div>
             <div class="form-group">
                 <label>Phone number:</label>
                 <input type="text" class="number form-control form-control-sm" placeholder="Enter Phone number" value="<?php echo $user->getNumber()?>">

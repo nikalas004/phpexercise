@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    warningGarbage();
+
     $(".submit").click(function() {
         var id = $(".id").val();
         var nameInput = $(".name").val();
@@ -22,8 +24,14 @@ $(document).ready(function() {
                 address: addressInput
             },
             success: function(data) {
-                alert("User updated!");
-                location.href = "../../users";
+                if(data.code == 200) {
+                    alert("User updated!");
+                    location.href = "../../users";
+                } else {
+                    warningGarbage();
+                    $("." + data.field + "-warning").show()
+                        .text(data.msg);
+                }
             }
         });
     });

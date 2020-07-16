@@ -1,4 +1,6 @@
 $(document).ready( function() {
+   warningGarbage();
+
    $(".submit").click( function() {
        var nameInput = $(".name").val();
        var emailInput = $(".email").val();
@@ -20,8 +22,14 @@ $(document).ready( function() {
                address: addressInput
            },
            success: function(data) {
-               alert("User added!");
-               location.href = "../users";
+               if(data.code == 200) {
+                   alert("User added!");
+                   location.href = "../users";
+               } else {
+                   warningGarbage();
+                   $("." + data.field + "-warning").show()
+                       .text(data.msg);
+               }
            }
        });
    });

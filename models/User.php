@@ -9,7 +9,7 @@ class User
     private $city;
     private $address;
 
-    public function __construct($name, $email, $number, $city, $address, $id = null)
+    public function __construct($name, $email, $number, $city, $address, $id = -1)
     {
         $this->id = $id;
         $this->name = $name;
@@ -111,13 +111,43 @@ class User
         UserRepository::getInstance()->addUser($this);
     }
 
-    public function update($newData) {
+    public function setNewData($newData) {
         $this->setName($newData['name']);
         $this->setEmail($newData['email']);
         $this->setNumber($newData['number']);
         $this->setCity($newData['city']);
         $this->setAddress($newData['address']);
+    }
 
+    public function update() {
         UserRepository::getInstance()->updateUser($this);
+    }
+
+    public function validateData() {
+        $user = UserRepository::getInstance()->uniqueEmail($this->getEmail());
+        if(empty($this->getName())) {
+            echo json_encode([
+                'code' => 400,
+                'field' => 'name',
+                'msg' => 'Name must not be empty!'
+            ]);
+            throw new Exception;
+        } else if(empty($this->getEmail())) {
+            echo json_encode([
+                'code' => 400,
+                'field' => 'email',
+                'msg' => 'Email must not be empty!'
+            ]);
+            throw new Exception;
+        } else if($user) {
+            if($user['id'] != $this->getId()) {
+                echo json_encode([
+                    'code' => 400,
+                    'field' => 'email',
+                    'msg' => 'Email is taken!'
+                ]);
+                throw new Exception;
+            }
+        }
     }
 }
