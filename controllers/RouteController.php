@@ -3,10 +3,6 @@
 class RouteController
 {
 
-    public function home($params) {
-        require 'templates/home.html';
-    }
-
     public function users($params) {
         $colOpportunities = ['name', 'email', 'number', 'city', 'address'];
         $wayOpportunities = ['ASC', 'DESC', ''];

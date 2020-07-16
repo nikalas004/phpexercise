@@ -30,8 +30,8 @@
         }
     }
     $page = implode('', $link_array);
-    if($page == '') {
-        Header('Location: home');
+    if(empty($page)) {
+        $page = 'users';
     }
 
     session_start();
