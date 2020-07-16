@@ -5,35 +5,35 @@
     <title>User</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="js/users.js"></script>
     <script src="../js/user.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-2">Name:</div>
-            <div class="col-2"><?php echo $user->getName();?></div>
+    <div class="container mt-5 ">
+        <div class="row justify-content-center m-3 h3">
+            <div class="col-5 font-weight-bold">Name:</div>
+            <div class="col-5"><?php echo $user->getName();?></div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-2">E-mail:</div>
-            <div class="col-2"><?php echo $user->getEmail();?></div>
+        <div class="row justify-content-center m-3 h3">
+            <div class="col-5 font-weight-bold">E-mail:</div>
+            <div class="col-5"><?php echo $user->getEmail();?></div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-2">Phone number:</div>
-            <div class="col-2"><?php echo $user->getNumber();?></div>
+        <div class="row justify-content-center m-3 h3">
+            <div class="col-5 font-weight-bold">Phone number:</div>
+            <div class="col-5"><?php echo $user->getNumber();?></div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-2">City:</div>
-            <div class="col-2"><?php echo $user->getCity();?></div>
+        <div class="row justify-content-center m-3 h3">
+            <div class="col-5 font-weight-bold">City:</div>
+            <div class="col-5"><?php echo $user->getCity();?></div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-2">Address:</div>
-            <div class="col-2"><?php echo $user->getAddress();?></div>
+        <div class="row justify-content-center m-3 h3">
+            <div class="col-5 font-weight-bold">Address:</div>
+            <div class="col-5"><?php echo $user->getAddress();?></div>
         </div>
         <div class="row justify-content-center mt-3">
-            <button class="update btn btn-primary" value="<?php echo $user->getId();?>">Update</button>
-            <button class="delete btn btn-danger ml-5" value="<?php echo $user->getId();?>">Delete</button>
+            <button class="col-2 back btn btn-secondary">Back to users</button>
+            <button class="col-2 update btn btn-primary ml-5" value="<?php echo $user->getId();?>">Edit</button>
+            <button class="col-2 delete btn btn-danger ml-5" value="<?php echo $user->getId();?>">Delete</button>
         </div>
     </div>
 </body>
